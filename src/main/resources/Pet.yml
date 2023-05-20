@@ -1,0 +1,6 @@
+title: Pet
+type: object
+properties:
+  id:
+    type: integer
+    example: 10
