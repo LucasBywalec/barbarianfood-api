@@ -1,7 +1,0 @@
-com\zaiapi\openapi\model\PaymentSettingsRequest.class
-com\zaiapi\openapi\api\AuthApi.class
-com\zaiapi\openapi\model\ErrorResponse.class
-com\zaiapi\openapi\api\SettingsApi.class
-com\zaiapi\openapi\model\ProfileSettingsRequest.class
-com\zaiapi\openapi\model\SignInRequest.class
-com\zaiapi\openapi\model\SignUpRequest.class
