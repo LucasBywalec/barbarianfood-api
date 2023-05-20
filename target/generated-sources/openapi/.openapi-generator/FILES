@@ -1,0 +1,7 @@
+src/main/java/com/zaiapi/openapi/api/AuthApi.java
+src/main/java/com/zaiapi/openapi/api/SettingsApi.java
+src/main/java/com/zaiapi/openapi/model/ErrorResponse.java
+src/main/java/com/zaiapi/openapi/model/PaymentSettingsRequest.java
+src/main/java/com/zaiapi/openapi/model/ProfileSettingsRequest.java
+src/main/java/com/zaiapi/openapi/model/SignInRequest.java
+src/main/java/com/zaiapi/openapi/model/SignUpRequest.java
