@@ -49,7 +49,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/SignInResponse'
+                $ref: '#/components/schemas/DefaultResponse'
         '422':
           description: Data is incorrect
           content:
@@ -288,11 +288,6 @@ components:
         email:
           type: string
         password:
-          type: string
-    SignInResponse:
-      type: object
-      properties:
-        token:
           type: string
     PaymentSettingsRequest:
       type: object
