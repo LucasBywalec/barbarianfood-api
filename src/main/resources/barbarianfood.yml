@@ -108,6 +108,166 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+  /settings/address:
+    post:
+      tags:
+        - settings
+      description: Endpoint used to edit address settings
+      operationId: editAddressInformation
+      requestBody:
+        description: Address settings request
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddressSettingsRequest'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultResponse'
+        '422':
+          description: Data is incorrect
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /offer/all:
+    get:
+      tags:
+        - offer
+      description: Endpoint used to list every available subscription to customer
+      operationId: getOffer
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetOfferResponse'
+        '422':
+          description: Listing error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /offer/details/{id}:
+    get:
+      tags:
+        - offer
+      description: Endpoint used to list details about selected offer
+      operationId: getOfferDetails
+      parameters:
+        - name: id
+          in: path
+          description: id of requested offer
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetOfferDetailsResponse'
+        '422':
+          description: Error while getting details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /offer/subscribe/{id}:
+    post:
+      tags:
+        - offer
+      description: Endpoint used to subscribe to the offer
+      operationId: subscribeToOffer
+      parameters:
+        - name: id
+          in: path
+          description: id of requested offer
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultResponse'
+        '422':
+          description: Subscription error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /admin/list/users:
+    get:
+      tags:
+        - admin
+      description: Endpoint used to list all users
+      operationId: listAllUsers
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListAllUsersResponse'
+        '422':
+          description: Listing error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /admin/list/offer:
+    get:
+      tags:
+        - admin
+      description: Endpoint used to list all offers
+      operationId: listAllOffers
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListAllOffersResponse'
+        '422':
+          description: Listing error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /admin/add/offer:
+    post:
+      tags:
+        - admin
+      description: Endpoint used to add new offer
+      operationId: addNewOffer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddNewOfferRequest'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DefaultResponse'
+        '422':
+          description: Listing error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
 
 components:
   schemas:
@@ -152,6 +312,126 @@ components:
           type: string
         password:
           type: string
+    AddressSettingsRequest:
+      type: object
+      properties:
+        street:
+          type: string
+        buildingNumber:
+          type: integer
+        postalCode:
+          type: string
+        voivodeship:
+          type: string
+        city:
+          type: string
+        phoneNumber:
+          type: string
+    GetOfferResponse:
+      type: object
+      properties:
+        offerList:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              title:
+                type: string
+              kcalRangeBottom:
+                type: integer
+              kcalRangeTop:
+                type: integer
+              cost:
+                type: number
+    GetOfferDetailsResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        for:
+          type: string
+          enum: ['pregnancy', 'bodybuilders', 'detox']
+        kcalRangeBottom:
+          type: integer
+        kcalRangeTop:
+          type: integer
+        period:
+          type: string
+          enum: ['short-term', 'long-term']
+        contraindications:
+          type: string
+        cost:
+          type: number
+    ListAllUsersResponse:
+      type: object
+      properties:
+        usersList:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              name:
+                type: string
+              surname:
+                type: string
+              email:
+                type: string
+              activeSubscription:
+                type: string
+    ListAllOffersResponse:
+      type: object
+      properties:
+        usersList:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              title:
+                type: string
+              for:
+                type: string
+                enum: ['pregnancy', 'bodybuilders', 'detox']
+              kcal:
+                type: string
+                enum: ['1500-2000', '2000-2500', '2500-3000', '3000+']
+              period:
+                type: string
+                enum: ['short-term', 'long-term']
+              contraindications:
+                type: string
+              cost:
+                type: number
+    AddNewOfferRequest:
+      type: object
+      properties:
+        usersList:
+          type: array
+          items:
+            type: object
+            properties:
+              title:
+                type: string
+              for:
+                type: string
+                enum: ['pregnancy', 'bodybuilders', 'detox']
+              kcal:
+                type: string
+                enum: ['1500-2000', '2000-2500', '2500-3000', '3000+']
+              period:
+                type: string
+                enum: ['short-term', 'long-term']
+              contraindications:
+                type: string
+              cost:
+                type: number
     DefaultResponse:
       type: object
     ErrorResponse:
