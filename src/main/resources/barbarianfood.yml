@@ -93,7 +93,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/SignUpRequest'
+              $ref: '#/components/schemas/ProfileSettingsRequest'
         required: true
       responses:
         '200':
