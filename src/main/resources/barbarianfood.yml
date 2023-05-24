@@ -93,7 +93,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ProfileSettingsRequest'
+              $ref: '#/components/schemas/SignUpRequest'
         required: true
       responses:
         '200':
@@ -300,17 +300,6 @@ components:
           type: string
           format: date
         creditCardSecret:
-          type: string
-    ProfileSettingsRequest:
-      type: object
-      properties:
-        name:
-          type: string
-        surname:
-          type: string
-        email:
-          type: string
-        password:
           type: string
     AddressSettingsRequest:
       type: object
