@@ -192,6 +192,11 @@ paths:
           required: true
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SubscribeRequest'
       responses:
         '200':
           description: Successful operation
@@ -271,6 +276,17 @@ paths:
 
 components:
   schemas:
+    SubscribeRequest:
+      type: object
+      properties:
+        token:
+          type: string
+        periodStart:
+          type: string
+          format: date
+        periodEnd:
+          type: string
+          format: date
     SignUpRequest:
       type: object
       properties:
