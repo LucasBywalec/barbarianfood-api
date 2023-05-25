@@ -26,10 +26,6 @@ paths:
                 $ref: '#/components/schemas/DefaultResponse'
         '422':
           description: Data is incorrect
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
   /auth/signin:
     post:
       tags:
@@ -49,13 +45,11 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/DefaultResponse'
+                $ref: '#/components/schemas/SignInResponse'
+        '400':
+          description: If account wasn't found
         '422':
           description: Data is incorrect
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
   /settings/payment:
     post:
       tags:
@@ -78,10 +72,6 @@ paths:
                 $ref: '#/components/schemas/DefaultResponse'
         '422':
           description: Data is incorrect
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
   /settings/profile:
     post:
       tags:
@@ -104,10 +94,6 @@ paths:
                 $ref: '#/components/schemas/DefaultResponse'
         '422':
           description: Data is incorrect
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
   /settings/address:
     post:
       tags:
@@ -130,10 +116,6 @@ paths:
                 $ref: '#/components/schemas/DefaultResponse'
         '422':
           description: Data is incorrect
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
   /offer/all:
     get:
       tags:
@@ -149,10 +131,6 @@ paths:
                 $ref: '#/components/schemas/GetOfferResponse'
         '422':
           description: Listing error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
   /offer/details/{id}:
     get:
       tags:
@@ -175,10 +153,6 @@ paths:
                 $ref: '#/components/schemas/GetOfferDetailsResponse'
         '422':
           description: Error while getting details
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
   /offer/subscribe/{id}:
     post:
       tags:
@@ -206,10 +180,6 @@ paths:
                 $ref: '#/components/schemas/DefaultResponse'
         '422':
           description: Subscription error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
   /admin/list/users:
     get:
       tags:
@@ -225,10 +195,6 @@ paths:
                 $ref: '#/components/schemas/ListAllUsersResponse'
         '422':
           description: Listing error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
   /admin/list/offer:
     get:
       tags:
@@ -244,11 +210,6 @@ paths:
                 $ref: '#/components/schemas/ListAllOffersResponse'
         '422':
           description: Listing error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
-  /admin/add/offer:
     post:
       tags:
         - admin
@@ -269,10 +230,6 @@ paths:
                 $ref: '#/components/schemas/DefaultResponse'
         '422':
           description: Listing error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
 
 components:
   schemas:
@@ -287,6 +244,11 @@ components:
         periodEnd:
           type: string
           format: date
+    SignInResponse:
+      type: object
+      properties:
+        token:
+          type: string
     SignUpRequest:
       type: object
       properties:
@@ -455,8 +417,6 @@ components:
               cost:
                 type: number
     DefaultResponse:
-      type: object
-    ErrorResponse:
       type: object
       properties:
         message:
