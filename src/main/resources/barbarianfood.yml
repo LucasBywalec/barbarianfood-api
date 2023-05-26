@@ -24,8 +24,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DefaultResponse'
-        '422':
-          description: Data is incorrect
+        '433':
+          description: Email taken
   /auth/signin:
     post:
       tags:
@@ -48,7 +48,7 @@ paths:
                 $ref: '#/components/schemas/SignInResponse'
         '400':
           description: If account wasn't found
-        '422':
+        '433':
           description: Data is incorrect
   /settings/payment:
     post:
@@ -70,7 +70,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DefaultResponse'
-        '422':
+        '433':
           description: Data is incorrect
   /settings/profile:
     post:
@@ -92,7 +92,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DefaultResponse'
-        '422':
+        '433':
           description: Data is incorrect
   /settings/address:
     post:
@@ -114,7 +114,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DefaultResponse'
-        '422':
+        '433':
           description: Data is incorrect
   /offer/all:
     get:
@@ -129,7 +129,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/GetOfferResponse'
-        '422':
+        '433':
           description: Listing error
   /offer/details/{id}:
     get:
@@ -151,7 +151,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/GetOfferDetailsResponse'
-        '422':
+        '433':
           description: Error while getting details
   /offer/subscribe/{id}:
     post:
@@ -178,7 +178,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DefaultResponse'
-        '422':
+        '433':
           description: Subscription error
   /admin/list/users:
     get:
@@ -193,7 +193,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ListAllUsersResponse'
-        '422':
+        '433':
           description: Listing error
   /admin/list/offer:
     get:
@@ -208,7 +208,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ListAllOffersResponse'
-        '422':
+        '433':
           description: Listing error
     post:
       tags:
@@ -228,7 +228,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DefaultResponse'
-        '422':
+        '433':
           description: Listing error
 
 components:
