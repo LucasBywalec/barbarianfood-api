@@ -207,7 +207,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ListAllOffersResponse'
+                $ref: '#/components/schemas/GetOfferResponse'
         '433':
           description: Listing error
     post:
@@ -317,18 +317,20 @@ components:
         offerList:
           type: array
           items:
-            type: object
-            properties:
-              id:
-                type: string
-              title:
-                type: string
-              kcalRangeBottom:
-                type: integer
-              kcalRangeTop:
-                type: integer
-              cost:
-                type: number
+            $ref: '#/components/schemas/OfferItem'
+    OfferItem:
+      type: object
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        kcalRangeBottom:
+          type: integer
+        kcalRangeTop:
+          type: integer
+        cost:
+          type: number
     GetOfferDetailsResponse:
       type: object
       properties:
@@ -350,72 +352,45 @@ components:
           type: string
         cost:
           type: number
+    UserItem:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        surname:
+          type: string
+        email:
+          type: string
+        activeSubscription:
+          type: string
     ListAllUsersResponse:
       type: object
       properties:
         usersList:
           type: array
           items:
-            type: object
-            properties:
-              id:
-                type: string
-              name:
-                type: string
-              surname:
-                type: string
-              email:
-                type: string
-              activeSubscription:
-                type: string
-    ListAllOffersResponse:
-      type: object
-      properties:
-        usersList:
-          type: array
-          items:
-            type: object
-            properties:
-              id:
-                type: string
-              title:
-                type: string
-              for:
-                type: string
-                enum: ['pregnancy', 'bodybuilders', 'detox']
-              kcal:
-                type: string
-                enum: ['1500-2000', '2000-2500', '2500-3000', '3000+']
-              period:
-                type: string
-                enum: ['short-term', 'long-term']
-              contraindications:
-                type: string
-              cost:
-                type: number
+            $ref: '#/components/schemas/UserItem'
     AddNewOfferRequest:
       type: object
       properties:
-        usersList:
-          type: array
-          items:
-            type: object
-            properties:
-              title:
-                type: string
-              for:
-                type: string
-                enum: ['pregnancy', 'bodybuilders', 'detox']
-              kcal:
-                type: string
-                enum: ['1500-2000', '2000-2500', '2500-3000', '3000+']
-              period:
-                type: string
-                enum: ['short-term', 'long-term']
-              contraindications:
-                type: string
-              cost:
-                type: number
+        title:
+          type: string
+        for:
+          type: string
+          enum: [ 'pregnancy', 'bodybuilders', 'detox' ]
+        kcalRangeBottom:
+          type: integer
+        kcalRangeTop:
+          type: integer
+        period:
+          type: string
+          enum: [ 'short-term', 'long-term' ]
+        contraindications:
+          type: string
+        cost:
+          type: number
     DefaultResponse:
       type: object
       properties:
