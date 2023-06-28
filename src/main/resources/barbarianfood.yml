@@ -271,12 +271,12 @@ components:
       type: object
       properties:
         creditCardNumber:
-          type: string
+          type: integer
+          format: int64
         creditCardOwner:
           type: string
         creditCardExpDate:
           type: string
-          format: date
         creditCardSecret:
           type: string
         token:
@@ -338,9 +338,6 @@ components:
           type: string
         title:
           type: string
-        for:
-          type: string
-          enum: ['pregnancy', 'bodybuilders', 'detox']
         kcalRangeBottom:
           type: integer
         kcalRangeTop:
@@ -377,9 +374,6 @@ components:
       properties:
         title:
           type: string
-        for:
-          type: string
-          enum: [ 'pregnancy', 'bodybuilders', 'detox' ]
         kcalRangeBottom:
           type: integer
         kcalRangeTop:
